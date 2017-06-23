@@ -21,7 +21,7 @@ android {
 
 dependencies {
     // RxServiceConnection
-    compile project(':library')
+    compile project(':rxserviceconnection')
 
     // Android Support
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
