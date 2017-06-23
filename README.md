@@ -25,6 +25,8 @@ public class DummyService extends Service {
             return DummyService.this;
         }
     };
+    
+    ...
 
     @Nullable
     @Override
