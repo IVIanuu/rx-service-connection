@@ -6,6 +6,16 @@ A rxjava wrapper around the service connection api
 
 ## Download
 ```groovy
+// in your root gradle
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+```groovy
 dependencies {
 	 compile 'com.github.IVIanuu:RxServiceConnection:LATEST-VERSION'
 }
