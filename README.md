@@ -61,14 +61,19 @@ public class MainActivity extends AppCompatActivity {
         ...
 
         disposable = RxServiceConnection.bind(this, new Intent(this, DummyService.class)) // bind the service
-                .subscribe(service -> dummyService = service);
+                .subscribe(service -> {
+		            dummyService = service
+			    onServiceConnected();
+		});
                 
+    }
+    
+    private void onServiceConnected() {
         // use the service
         dummyService.test()
                 .subscribe(long -> {
                            // do something with data
                 });
-        
     }
 
     @Override
