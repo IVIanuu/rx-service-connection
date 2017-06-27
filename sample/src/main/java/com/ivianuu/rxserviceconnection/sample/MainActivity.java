@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(@NonNull Long aLong) throws Exception {
+                        Log.d("dummyservice ", String.valueOf(aLong));
                         // do something with the data
                     }
                 });
