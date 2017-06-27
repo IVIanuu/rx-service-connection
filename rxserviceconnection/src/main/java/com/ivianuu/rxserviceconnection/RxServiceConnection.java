@@ -30,7 +30,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * @author Manuel Wrage (IVIanuu)
+ * Binds and unbinds services
  */
 public final class RxServiceConnection {
 

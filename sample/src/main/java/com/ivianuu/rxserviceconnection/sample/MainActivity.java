@@ -20,31 +20,27 @@ import io.reactivex.functions.Function;
 public class MainActivity extends AppCompatActivity {
 
     private Disposable disposable;
+    private DummyService dummyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.second_activity).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
-
         disposable = RxServiceConnection.<DummyService>bind(this, new Intent(this, DummyService.class))
-                .switchMap(new Function<DummyService, ObservableSource<Long>>() {
+                .subscribe(new Consumer<DummyService>() {
                     @Override
-                    public ObservableSource<Long> apply(@NonNull DummyService dummyService) throws Exception {
-                        // do something with the service
-                        return dummyService.test();
+                    public void accept(@NonNull DummyService dummyService) throws Exception {
+                        MainActivity.this.dummyService = dummyService;
                     }
-                })
+                });
+
+        // use the service
+        dummyService.test()
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(@NonNull Long aLong) throws Exception {
-                        Log.d(MainActivity.class.getSimpleName(), String.valueOf(aLong));
+                        // do something with the data
                     }
                 });
     }

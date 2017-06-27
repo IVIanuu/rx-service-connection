@@ -27,24 +27,6 @@ public class DummyService extends Service {
         }
     };
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.d(DummyService.class.getSimpleName(), "on create");
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(DummyService.class.getSimpleName(), "on start command");
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(DummyService.class.getSimpleName(), "on destroy");
-    }
-
     public Observable<Long> test() {
         return Observable.interval(1000, TimeUnit.MILLISECONDS);
     }
