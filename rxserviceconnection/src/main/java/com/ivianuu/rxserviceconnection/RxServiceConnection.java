@@ -36,10 +36,18 @@ public final class RxServiceConnection {
 
     private RxServiceConnection() {}
 
+    /**
+     * Binds the service until the observable gets disposed
+     * Emits only 1 time on service connected
+     */
     public static <T extends Service> Observable<T> bind(@NonNull Context context, @NonNull Intent intent) {
         return bind(context, intent, Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * Binds the service until the observable gets disposed
+     * Emits only 1 time on service connected
+     */
     public static <T extends Service> Observable<T> bind(@NonNull final Context context, @Nullable final Intent intent, final int flag) {
         return new Observable<T>() {
 
