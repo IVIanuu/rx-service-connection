@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 
 /**
- * @author Manuel Wrage (IVIanuu)
+ * Dummy service
  */
 public class DummyService extends Service {
 

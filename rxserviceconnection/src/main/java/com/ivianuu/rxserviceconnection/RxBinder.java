@@ -24,6 +24,9 @@ import android.support.annotation.NonNull;
  * Binder with a get service method
  */
 public abstract class RxBinder<T extends Service> extends Binder {
+    /**
+     * Returns the bound service
+     */
     @NonNull
     public abstract T getService();
 }

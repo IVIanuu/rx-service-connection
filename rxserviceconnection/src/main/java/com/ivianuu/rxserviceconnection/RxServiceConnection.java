@@ -26,7 +26,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -34,12 +35,15 @@ import io.reactivex.disposables.Disposable;
  */
 public final class RxServiceConnection {
 
-    private RxServiceConnection() {}
+    private RxServiceConnection() {
+        // no instances
+    }
 
     /**
      * Binds the service until the observable gets disposed
      * Emits only 1 time on service connected
      */
+    @NonNull
     public static <T extends Service> Observable<T> bind(@NonNull Context context, @NonNull Intent intent) {
         return bind(context, intent, Context.BIND_AUTO_CREATE);
     }
@@ -48,20 +52,20 @@ public final class RxServiceConnection {
      * Binds the service until the observable gets disposed
      * Emits only 1 time on service connected
      */
-    public static <T extends Service> Observable<T> bind(@NonNull final Context context, @Nullable final Intent intent, final int flag) {
-        return new Observable<T>() {
-
+    @NonNull
+    public static <T extends Service> Observable<T> bind(@NonNull final Context context,
+                                                         @Nullable final Intent intent,
+                                                         final int flag) {
+        return Observable.create(new ObservableOnSubscribe<T>() {
             private boolean bound;
-            private boolean disposed;
-
             @Override
-            protected void subscribeActual(final Observer<? super T> observer) {
+            public void subscribe(final ObservableEmitter<T> e) throws Exception {
                 final ServiceConnection serviceConnection = new ServiceConnection() {
                     @Override
                     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                        RxBinder<T> rxBinder = (RxBinder<T>) iBinder;
-                        if (!disposed) {
-                            observer.onNext(rxBinder.getService());
+                        if (!e.isDisposed()) {
+                            RxBinder<T> rxBinder = (RxBinder<T>) iBinder;
+                            e.onNext(rxBinder.getService());
                             // we do not call on complete
                         }
                     }
@@ -73,10 +77,12 @@ public final class RxServiceConnection {
 
                 };
 
-                observer.onSubscribe(new Disposable() {
+                e.setDisposable(new Disposable() {
+                    private boolean disposed;
                     @Override
                     public void dispose() {
-                        if (bound) {
+                        // unbind on dispose
+                        if (!disposed && bound) {
                             context.unbindService(serviceConnection);
                             disposed = true;
                         }
@@ -88,8 +94,9 @@ public final class RxServiceConnection {
                     }
                 });
 
+                // bind the service
                 bound = context.bindService(intent, serviceConnection, flag);
             }
-        };
+        });
     }
 }
