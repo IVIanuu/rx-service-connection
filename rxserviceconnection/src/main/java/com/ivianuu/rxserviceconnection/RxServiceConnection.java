@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -43,7 +44,7 @@ public final class RxServiceConnection {
      * Binds the service until the observable gets disposed
      * Emits only 1 time on service connected
      */
-    @NonNull
+    @CheckResult @NonNull
     public static <T extends Service> Observable<T> bind(@NonNull Context context, @NonNull Intent intent) {
         return bind(context, intent, Context.BIND_AUTO_CREATE);
     }
@@ -52,7 +53,7 @@ public final class RxServiceConnection {
      * Binds the service until the observable gets disposed
      * Emits only 1 time on service connected
      */
-    @NonNull
+    @CheckResult @NonNull
     public static <T extends Service> Observable<T> bind(@NonNull final Context context,
                                                          @Nullable final Intent intent,
                                                          final int flag) {
