@@ -28,19 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         disposable = RxServiceConnection.<DummyService>bind(this, new Intent(this, DummyService.class))
-                .flatMap(new Function<DummyService, ObservableSource<Long>>() {
-                    @Override
-                    public ObservableSource<Long> apply(DummyService dummyService) throws Exception {
-                        Log.d("dummyservice", "service bound");
-                        return dummyService.test();
-                    }
+                .flatMap(dummyService -> {
+                    Log.d("dummyservice", "service bound");
+                    return dummyService.test();
                 })
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        Log.d("dummyservice ", String.valueOf(aLong));
-                    }
-                });
+                .subscribe(aLong -> Log.d("dummyservice ", String.valueOf(aLong)));
     }
 
     @Override
