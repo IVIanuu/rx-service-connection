@@ -1,1 +1,1 @@
-include ':sample', ':rxserviceconnection'
+include ':sample', ':rxserviceconnection', ':rxserviceconnection-kotlin'
