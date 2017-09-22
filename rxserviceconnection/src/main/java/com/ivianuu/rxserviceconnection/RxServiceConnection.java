@@ -30,6 +30,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Cancellable;
 
 /**
  * Binds and unbinds services
@@ -78,22 +79,7 @@ public final class RxServiceConnection {
 
                 };
 
-                e.setDisposable(new Disposable() {
-                    private boolean disposed;
-                    @Override
-                    public void dispose() {
-                        // unbind on dispose
-                        if (!disposed && bound) {
-                            context.unbindService(serviceConnection);
-                            disposed = true;
-                        }
-                    }
-
-                    @Override
-                    public boolean isDisposed() {
-                        return disposed;
-                    }
-                });
+                e.setCancellable(() -> context.unbindService(serviceConnection));
 
                 // bind the service
                 bound = context.bindService(intent, serviceConnection, flag);

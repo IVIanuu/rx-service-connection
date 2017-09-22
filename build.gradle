@@ -1,7 +1,7 @@
 buildscript {
 
     ext {
-        androidPlugin = 'com.android.tools.build:gradle:3.0.0-beta5'
+        androidPlugin = 'com.android.tools.build:gradle:3.0.0-beta6'
         minSdkVersion = 14
         compileSdkVersion = 26
         targetSdkVersion = 26
