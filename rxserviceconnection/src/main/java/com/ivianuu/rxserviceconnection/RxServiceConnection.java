@@ -79,7 +79,9 @@ public final class RxServiceConnection {
 
                 };
 
-                e.setCancellable(() -> context.unbindService(serviceConnection));
+                e.setCancellable(() -> {
+                    if (bound) { context.unbindService(serviceConnection); }
+                });
 
                 // bind the service
                 bound = context.bindService(intent, serviceConnection, flag);
