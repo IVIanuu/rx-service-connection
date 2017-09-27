@@ -32,6 +32,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Cancellable;
 
+import static com.ivianuu.preconditions.Preconditions.checkNotNull;
+
 /**
  * Binds and unbinds services
  */
@@ -58,6 +60,8 @@ public final class RxServiceConnection {
     public static <T extends Service> Observable<T> bind(@NonNull final Context context,
                                                          @Nullable final Intent intent,
                                                          final int flag) {
+        checkNotNull(context, "context == null");
+        checkNotNull(intent, "intent == null");
         return Observable.create(new ObservableOnSubscribe<T>() {
             private boolean bound;
             @Override

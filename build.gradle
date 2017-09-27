@@ -18,6 +18,8 @@ buildscript {
         supportAppCompat = "com.android.support:appcompat-v7:$supportVersion"
 
         rxJava = 'io.reactivex.rxjava2:rxjava:2.1.3'
+
+        preconditions = "com.github.IVIanuu:Preconditions:1.0.0"
     }
 
     repositories {
@@ -35,6 +37,7 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
 }
 
