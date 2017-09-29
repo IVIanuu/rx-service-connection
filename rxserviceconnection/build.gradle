@@ -26,7 +26,7 @@ dependencies {
     compile rootProject.ext.rxJava
 
     // Preconditions
-    implementation rootProject.ext.preconditions
+    api rootProject.ext.preconditions
 }
 
 // build a jar with source files
