@@ -29,10 +29,8 @@ import android.support.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Cancellable;
 
-import static com.ivianuu.preconditions.Preconditions.checkNotNull;
+import static com.ivianuu.rxserviceconnection.Preconditions.checkNotNull;
 
 /**
  * Binds and unbinds services
