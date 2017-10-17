@@ -1,13 +1,13 @@
 buildscript {
 
     ext {
-        androidPlugin = 'com.android.tools.build:gradle:3.0.0-beta6'
+        androidPlugin = 'com.android.tools.build:gradle:3.0.0-rc1'
         minSdkVersion = 14
         compileSdkVersion = 26
         targetSdkVersion = 26
-        buildToolsVersion = '26.0.1'
+        buildToolsVersion = '26.0.2'
 
-        kotlinVersion = '1.1.50'
+        kotlinVersion = '1.1.51'
         kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
