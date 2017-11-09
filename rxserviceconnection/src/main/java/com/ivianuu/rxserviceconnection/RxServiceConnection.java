@@ -67,11 +67,9 @@ public final class RxServiceConnection {
                 final ServiceConnection serviceConnection = new ServiceConnection() {
                     @Override
                     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                        if (!e.isDisposed()) {
-                            RxBinder<T> rxBinder = (RxBinder<T>) iBinder;
-                            e.onNext(rxBinder.getService());
-                            // we do not call on complete
-                        }
+                        RxBinder<T> rxBinder = (RxBinder<T>) iBinder;
+                        e.onNext(rxBinder.getService());
+                        // we do not call on complete
                     }
 
                     @Override
