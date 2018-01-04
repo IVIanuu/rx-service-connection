@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RxServiceConnection.iml" filepath="$PROJECT_DIR$/RxServiceConnection.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxserviceconnection/rxserviceconnection.iml" filepath="$PROJECT_DIR$/rxserviceconnection/rxserviceconnection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxserviceconnection-kotlin/rxserviceconnection-kotlin.iml" filepath="$PROJECT_DIR$/rxserviceconnection-kotlin/rxserviceconnection-kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>

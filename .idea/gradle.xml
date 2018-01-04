@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/rxserviceconnection" />
-            <option value="$PROJECT_DIR$/rxserviceconnection-kotlin" />
             <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>

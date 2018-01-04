@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.ivianuu.rxserviceconnection.sample"
@@ -11,17 +11,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    // RxServiceConnection
-    compile project(':rxserviceconnection')
-
     // Android Support
-    compile rootProject.ext.supportAppCompat
+    implementation rootProject.ext.supportAppCompat
+
+    // Kotlin
+    implementation rootProject.ext.kotlinStdlib
+
+    // RxServiceConnection
+    implementation project(':rxserviceconnection')
 }
