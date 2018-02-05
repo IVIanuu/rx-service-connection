@@ -10,7 +10,7 @@ buildscript {
         kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
-        mavenPlugin = 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        mavenPlugin = 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 
         supportVersion = '27.0.2'
         supportAnnotations = "com.android.support:support-annotations:$supportVersion"
