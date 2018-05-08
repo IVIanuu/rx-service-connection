@@ -23,7 +23,6 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Binder
 import android.os.IBinder
-import android.support.annotation.CheckResult
 
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -33,9 +32,7 @@ import io.reactivex.ObservableOnSubscribe
  * [Binder] with a get [T] function
  */
 abstract class RxBinder<out T : Service> : Binder() {
-    /**
-     * The bound [T]
-     */
+
     abstract val service: T
 }
 
@@ -44,16 +41,12 @@ abstract class RxBinder<out T : Service> : Binder() {
  */
 object RxServiceConnection {
 
-    /**
-     * Binds the [T] until the [Observable] gets disposed
-     * Emits only 1 time on service connected
-     */
-    @CheckResult
     @JvmStatic
     @JvmOverloads
-    fun <T : Service> bind(context: Context,
-                           intent: Intent,
-                           flag: Int = Context.BIND_AUTO_CREATE
+    fun <T : Service> bind(
+        context: Context,
+        intent: Intent,
+        flag: Int = Context.BIND_AUTO_CREATE
     ): Observable<T> {
         var bound = false
         return Observable.create { e ->
@@ -61,7 +54,6 @@ object RxServiceConnection {
                 override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
                     val rxBinder = iBinder as RxBinder<T>
                     e.onNext(rxBinder.service)
-                    // we do not call on complete
                 }
 
                 override fun onServiceDisconnected(componentName: ComponentName) {

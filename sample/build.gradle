@@ -2,23 +2,23 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion Versions.compileSdk
 
     defaultConfig {
         applicationId "com.ivianuu.rxserviceconnection.sample"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
     }
 }
 
 dependencies {
     // Android Support
-    implementation rootProject.ext.supportAppCompat
+    implementation Deps.supportAppCompat
 
     // Kotlin
-    implementation rootProject.ext.kotlinStdlib
+    implementation Deps.kotlinStdLib
 
     // RxServiceConnection
     implementation project(':rxserviceconnection')

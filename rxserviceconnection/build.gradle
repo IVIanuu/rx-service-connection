@@ -5,23 +5,20 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.ivianuu'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion Versions.compileSdk
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
     }
 }
 
 dependencies {
-    // Android Support
-    api rootProject.ext.supportAnnotations
-
     // Kotlin
-    api rootProject.ext.kotlinStdlib
+    api Deps.kotlinStdLib
 
     // RxJava
-    compile rootProject.ext.rxJava
+    api Deps.rxJava
 }
 
 // build a jar with source files
