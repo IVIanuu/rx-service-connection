@@ -10,7 +10,7 @@ object Versions {
 
     const val kotlin = "1.2.41"
     const val mavenGradle = "2.1"
-    const val rxJava = "2.1.13"
+    const val rxJava = "2.1.14"
     const val support = "27.1.1"
 }
 //
