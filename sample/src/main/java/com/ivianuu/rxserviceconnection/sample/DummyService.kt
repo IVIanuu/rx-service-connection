@@ -3,14 +3,9 @@ package com.ivianuu.rxserviceconnection.sample
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.support.annotation.IntDef
-import android.util.Log
-
 import com.ivianuu.rxserviceconnection.RxBinder
-
-import java.util.concurrent.TimeUnit
-
 import io.reactivex.Observable
+import java.util.concurrent.TimeUnit
 
 /**
  * Dummy service
