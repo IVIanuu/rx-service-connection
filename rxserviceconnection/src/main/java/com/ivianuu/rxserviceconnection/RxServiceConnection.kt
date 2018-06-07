@@ -29,7 +29,6 @@ import io.reactivex.Observable
  * [Binder] with a get [T] function
  */
 abstract class RxBinder<out T : Service> : Binder() {
-
     abstract val service: T
 }
 
