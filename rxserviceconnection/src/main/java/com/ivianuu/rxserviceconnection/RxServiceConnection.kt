@@ -21,16 +21,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Binder
 import android.os.IBinder
 import io.reactivex.Observable
-
-/**
- * [Binder] with a get [T] function
- */
-abstract class RxBinder<out T : Service> : Binder() {
-    abstract val service: T
-}
 
 /**
  * Binds and unbinds [Service]'s via [Observable]'s
@@ -48,7 +40,8 @@ object RxServiceConnection {
         return Observable.create { e ->
             val serviceConnection = object : ServiceConnection {
                 override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
-                    val rxBinder = iBinder as RxBinder<T>
+                    val rxBinder = iBinder as? RxBinder<T>
+                            ?: throw IllegalStateException("binder must be an rx binder")
                     e.onNext(rxBinder.service)
                 }
 
